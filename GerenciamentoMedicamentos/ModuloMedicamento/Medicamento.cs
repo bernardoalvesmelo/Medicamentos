@@ -33,10 +33,10 @@ public class Medicamento : Entidade
 
     public Medicamento()
     {
-        obterId(ref id);
+        ObterId(ref id);
     }
 
-    public override string[] getAtributos()
+    public override string[] ObterAtributos()
     {
         string[] atributos = {(Id + ""), Nome, Descricao, (Quantidade + ""),(Retiradas + ""),
        (Limite + ""), MedicamentoFornecedor.Nome};
@@ -52,7 +52,7 @@ public class Medicamento : Entidade
         MedicamentoFornecedor = medicamento.MedicamentoFornecedor;
     }
 
-    public override Entidade getClass()
+    public override Entidade ObterClasse()
     {
         return new Medicamento();
     }

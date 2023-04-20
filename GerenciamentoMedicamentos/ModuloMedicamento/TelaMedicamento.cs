@@ -132,7 +132,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             medicamento.Requisicoes = new ArrayList();
         }
 
-        public ArrayList getMedicamentosDisponiveis()
+        public ArrayList ObterMedicamentosDisponiveis()
         {
             ArrayList medicamentos = new ArrayList();
             foreach (Medicamento medicamento in repositorio.Lista)
@@ -152,7 +152,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             {
                 MostrarMedicamentosDisponiveis();
                 int indice = ValidarInt("Digite o id: ");
-                entidade = repositorio.EncontrarRegistro(indice, getMedicamentosDisponiveis());
+                entidade = repositorio.EncontrarRegistro(indice, ObterMedicamentosDisponiveis());
                 if (entidade == null)
                 {
                     Console.WriteLine("O id escolhido não está disponível!");
@@ -179,7 +179,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                 if (medicamento.Quantidade > 0)
                 {
                     {
-                        foreach (string atributo in medicamento.getAtributos())
+                        foreach (string atributo in medicamento.ObterAtributos())
                         {
                             Console.Write(atributo.PadRight(20) + "|");
                         }
@@ -203,7 +203,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                 if (medicamento.Limite > medicamento.Quantidade)
                 {
                     {
-                        foreach (string atributo in medicamento.getAtributos())
+                        foreach (string atributo in medicamento.ObterAtributos())
                         {
                             Console.Write(atributo.PadRight(20) + "|");
                         }
@@ -224,14 +224,14 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             Console.Write(cabecalho);
             Console.WriteLine();
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
-            ArrayList novaLista = (ArrayList)repositorio.Lista.Clone();
-            IComparer comparador = (IComparer)new Comparador();
-            novaLista.Sort(comparador);
-            foreach (Medicamento medicamento in novaLista)
+            ArrayList ListaOrdenada = (ArrayList)repositorio.Lista.Clone();
+            IComparer comparador = (IComparer)new ComparadorMedicamento();
+            ListaOrdenada.Sort(comparador);
+            foreach (Medicamento medicamento in ListaOrdenada)
                 if (medicamento.Requisicoes.Count > 0)
                 {
                     {
-                        foreach (string atributo in medicamento.getAtributos())
+                        foreach (string atributo in medicamento.ObterAtributos())
                         {
                             Console.Write(atributo.PadRight(20) + "|");
                         }
@@ -241,7 +241,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
         }
     }
 
-    public class Comparador : IComparer
+    public class ComparadorMedicamento : IComparer
     {
         public int Compare(object? a, object? b)
         {

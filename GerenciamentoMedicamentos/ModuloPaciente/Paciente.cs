@@ -16,10 +16,10 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
 
         public Paciente()
         {
-            obterId(ref id);
+            ObterId(ref id);
         }
 
-        public override string[] getAtributos()
+        public override string[] ObterAtributos()
         {
             string[] atributos = { (Id + ""), Nome, Cpf, Cartao, Telefone, Endereco };
             return atributos;
@@ -35,7 +35,7 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
             Endereco = paciente.Endereco;
         }
 
-        public override Entidade getClass()
+        public override Entidade ObterClasse()
         {
             return new Paciente();
         }

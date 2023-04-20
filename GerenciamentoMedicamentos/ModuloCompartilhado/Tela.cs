@@ -43,7 +43,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
             foreach (Entidade entidade in repositorio.Lista)
             {
-                foreach (string atributo in entidade.getAtributos())
+                foreach (string atributo in entidade.ObterAtributos())
                 {
                     Console.Write(atributo.PadRight(20) + "|");
                 }
@@ -55,7 +55,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
         {
             Entidade entidadeAtualizada = ValidarId();
             int id = entidadeAtualizada.Id;
-            entidadeAtualizada = entidadeAtualizada.getClass();
+            entidadeAtualizada = entidadeAtualizada.ObterClasse();
             PreencherAtributos(entidadeAtualizada);
             repositorio.EditarRegistro(entidadeAtualizada, id);
         }

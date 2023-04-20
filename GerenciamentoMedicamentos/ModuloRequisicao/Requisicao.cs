@@ -19,10 +19,10 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
 
         public Requisicao()
         {
-            obterId(ref id);
+            ObterId(ref id);
         }
 
-        public override string[] getAtributos()
+        public override string[] ObterAtributos()
         {
             string[] atributos = {(Id + ""), RequisicaoPaciente.Nome, RequisicaoMedicamento.Nome, RequisicaoFuncionario.Nome,
         Data.ToString("dd/MM/yyyy"), (QuantidadeMedicamento + "")};
@@ -36,7 +36,7 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             RequisicaoFuncionario = requisicao.RequisicaoFuncionario;
         }
 
-        public override Entidade getClass()
+        public override Entidade ObterClasse()
         {
             return new Requisicao();
         }

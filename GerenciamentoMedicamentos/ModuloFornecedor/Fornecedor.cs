@@ -17,10 +17,10 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
 
         public Fornecedor()
         {
-            obterId(ref id);
+            ObterId(ref id);
         }
 
-        public override string[] getAtributos()
+        public override string[] ObterAtributos()
         {
             string[] atributos = { (Id + ""), Nome, Cnpj, Telefone, Email, Endereco };
             return atributos;
@@ -36,7 +36,7 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
             Endereco = fornecedor.Endereco;
         }
 
-        public override Entidade getClass()
+        public override Entidade ObterClasse()
         {
             return new Fornecedor();
         }

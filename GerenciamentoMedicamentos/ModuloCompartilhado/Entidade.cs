@@ -4,7 +4,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
     {
         public int Id { get; protected set; }
 
-        protected void obterId(ref int id)
+        protected void ObterId(ref int id)
         {
             id++;
             Id = id;
@@ -15,13 +15,13 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Id = entidade.Id;
         }
 
-        public virtual string[] getAtributos()
+        public virtual string[] ObterAtributos()
         {
             string[] atributos = { (Id + "") };
             return atributos;
         }
 
-        public virtual Entidade getClass()
+        public virtual Entidade ObterClasse()
         {
             return new Entidade();
         }

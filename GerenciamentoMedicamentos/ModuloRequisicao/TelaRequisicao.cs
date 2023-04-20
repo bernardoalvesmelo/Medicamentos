@@ -49,7 +49,7 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
                             Console.ReadLine();
                             break;
                         }
-                        if (telaMedicamento.getMedicamentosDisponiveis().Count == 0)
+                        if (telaMedicamento.ObterMedicamentosDisponiveis().Count == 0)
                         {
                             Console.WriteLine("Não existe medicamentos disponíveis no sistema!");
                             Console.ReadLine();

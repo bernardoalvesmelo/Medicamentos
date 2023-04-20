@@ -16,10 +16,10 @@ public class Funcionario : Entidade
 
     public Funcionario()
     {
-        obterId(ref id);
+        ObterId(ref id);
     }
 
-    public override string[] getAtributos()
+    public override string[] ObterAtributos()
     {
         string[] atributos = { (Id + ""), Nome, Cpf, Telefone, Endereco };
         return atributos;
@@ -36,7 +36,7 @@ public class Funcionario : Entidade
         Endereco = funcionario.Endereco;
     }
 
-    public override Entidade getClass()
+    public override Entidade ObterClasse()
     {
         return new Funcionario();
     }

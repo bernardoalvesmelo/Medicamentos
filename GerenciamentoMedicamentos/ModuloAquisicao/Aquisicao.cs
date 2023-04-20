@@ -18,10 +18,10 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
 
         public Aquisicao()
         {
-            obterId(ref id);
+            ObterId(ref id);
         }
 
-        public override string[] getAtributos()
+        public override string[] ObterAtributos()
         {
             string[] atributos =
             {
@@ -42,7 +42,7 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             AquisicaoFuncionario = aquisicao.AquisicaoFuncionario;
         }
 
-        public override Entidade getClass()
+        public override Entidade ObterClasse()
         {
             return new Aquisicao();
         }
