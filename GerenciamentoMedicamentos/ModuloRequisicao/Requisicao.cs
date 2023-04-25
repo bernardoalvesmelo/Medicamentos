@@ -6,7 +6,7 @@ using GerenciamentoMedicamentos.ModuloPaciente;
 namespace GerenciamentoMedicamentos.ModuloRequisicao
 {
 
-    public class Requisicao : Entidade
+    public class Requisicao : EntidadeBase
     {
         static private int id = 0;
 
@@ -29,14 +29,14 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             return atributos;
         }
 
-        public override void Atualizar(Entidade entidade)
+        public override void Atualizar(EntidadeBase entidade)
         {
             Requisicao requisicao = (Requisicao)entidade;
             RequisicaoPaciente = requisicao.RequisicaoPaciente;
             RequisicaoFuncionario = requisicao.RequisicaoFuncionario;
         }
 
-        public override Entidade ObterClasse()
+        public override EntidadeBase ObterClasse()
         {
             return new Requisicao();
         }

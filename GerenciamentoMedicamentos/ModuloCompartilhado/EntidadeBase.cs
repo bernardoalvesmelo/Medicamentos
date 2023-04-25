@@ -1,6 +1,6 @@
 namespace GerenciamentoMedicamentos.ModuloCompartilhado
 {
-    public class Entidade
+    public class EntidadeBase
     {
         public int Id { get; protected set; }
 
@@ -10,7 +10,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Id = id;
         }
 
-        public virtual void Atualizar(Entidade entidade)
+        public virtual void Atualizar(EntidadeBase entidade)
         {
             Id = entidade.Id;
         }
@@ -21,9 +21,9 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             return atributos;
         }
 
-        public virtual Entidade ObterClasse()
+        public virtual EntidadeBase ObterClasse()
         {
-            return new Entidade();
+            return new EntidadeBase();
         }
     }
 }

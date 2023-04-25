@@ -10,25 +10,25 @@ namespace GerenciamentoMedicamentos
 {
     internal class Program
     {
-        static Repositorio repositorioPaciente = new Repositorio();
+        static RepositorioBase repositorioPaciente = new RepositorioBase();
         static TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
-        static Repositorio repositorioFornecedor = new Repositorio();
+        static RepositorioBase repositorioFornecedor = new RepositorioBase();
         static TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
-        static Repositorio repositorioFuncionario = new Repositorio();
+        static RepositorioBase repositorioFuncionario = new RepositorioBase();
         static TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
-        static Repositorio repositorioMedicamento = new Repositorio();
+        static RepositorioBase repositorioMedicamento = new RepositorioBase();
         static TelaMedicamento telaMedicamento = new TelaMedicamento(
             repositorioMedicamento,
             telaFornecedor
         );
-        static Repositorio repositorioAquisicao = new Repositorio();
+        static RepositorioBase repositorioAquisicao = new RepositorioBase();
         static TelaAquisicao telaAquisicao = new TelaAquisicao(
             repositorioAquisicao,
             telaFornecedor,
             telaFuncionario,
             telaMedicamento
         );
-        static Repositorio repositorioRequisicao = new Repositorio();
+        static RepositorioBase repositorioRequisicao = new RepositorioBase();
         static TelaRequisicao telaRequisicao = new TelaRequisicao(
             repositorioRequisicao,
             telaPaciente,
@@ -142,7 +142,7 @@ namespace GerenciamentoMedicamentos
                 Console.ReadLine();
                 return;
             }
-            Tela.funcionarioLogado = funcionario;
+            TelaBase.funcionarioLogado = funcionario;
             Opcoes();
         }
 

@@ -2,30 +2,30 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
 {
     using System.Collections;
 
-    public class Repositorio
+    public class RepositorioBase
     {
         public ArrayList Lista { get; protected set; }
 
-        public Repositorio()
+        public RepositorioBase()
         {
             this.Lista = new ArrayList();
         }
 
-        public void InserirRegistro(Entidade entidade)
+        public void InserirRegistro(EntidadeBase entidade)
         {
             Lista.Add(entidade);
         }
 
         public void EditarRegistro(
-            Entidade entidadeAtualizada, int id
+            EntidadeBase entidadeAtualizada, int id
         )
         {
             EncontrarRegistro(id).Atualizar(entidadeAtualizada);
         }
 
-        public Entidade EncontrarRegistro(int id, ArrayList lista)
+        public EntidadeBase EncontrarRegistro(int id, ArrayList lista)
         {
-            foreach (Entidade entidade in lista)
+            foreach (EntidadeBase entidade in lista)
             {
                 if (entidade.Id == id)
                 {
@@ -36,9 +36,9 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             return null;
         }
 
-        public Entidade EncontrarRegistro(int id)
+        public EntidadeBase EncontrarRegistro(int id)
         {
-            foreach (Entidade entidade in Lista)
+            foreach (EntidadeBase entidade in Lista)
             {
                 if (entidade.Id == id)
                 {
@@ -49,7 +49,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             return null;
         }
 
-        public void RemoverRegistro(Entidade entidade)
+        public void RemoverRegistro(EntidadeBase entidade)
         {
             Lista.Remove(entidade);
         }

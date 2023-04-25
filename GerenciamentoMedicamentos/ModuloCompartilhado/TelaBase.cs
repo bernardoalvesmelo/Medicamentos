@@ -3,9 +3,9 @@ using GerenciamentoMedicamentos.ModuloFuncionario;
 
 namespace GerenciamentoMedicamentos.ModuloCompartilhado
 {
-    public class Tela
+    public class TelaBase
     {
-        protected Repositorio repositorio;
+        protected RepositorioBase repositorio;
         protected string titulo;
 
         public static Funcionario funcionarioLogado;
@@ -15,16 +15,16 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
         }
         public string[] Cabecalho { get; protected set; }
 
-        public Tela(Repositorio repositorio)
+        public TelaBase(RepositorioBase repositorio)
         {
             this.repositorio = repositorio;
             titulo = "Entidades:";
             string[] cabecalho = { "Id:" };
             Cabecalho = cabecalho;
         }
-        public virtual Entidade RegistrarEntidade()
+        public virtual EntidadeBase RegistrarEntidade()
         {
-            Entidade entidade = new Entidade();
+            EntidadeBase entidade = new EntidadeBase();
             PreencherAtributos(entidade);
             return entidade;
         }
@@ -41,7 +41,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Console.Write(cabecalho);
             Console.WriteLine();
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
-            foreach (Entidade entidade in repositorio.Lista)
+            foreach (EntidadeBase entidade in repositorio.Lista)
             {
                 foreach (string atributo in entidade.ObterAtributos())
                 {
@@ -53,14 +53,14 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
 
         public void AtualizarEntidade()
         {
-            Entidade entidadeAtualizada = ValidarId();
+            EntidadeBase entidadeAtualizada = ValidarId();
             int id = entidadeAtualizada.Id;
             entidadeAtualizada = entidadeAtualizada.ObterClasse();
             PreencherAtributos(entidadeAtualizada);
             repositorio.EditarRegistro(entidadeAtualizada, id);
         }
 
-        public virtual void PreencherAtributos(Entidade entidade)
+        public virtual void PreencherAtributos(EntidadeBase entidade)
         {
             entidade.Atualizar(entidade);
             Console.WriteLine('d');
@@ -68,13 +68,13 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
 
         public void RemoverEntidade()
         {
-            Entidade entidade = ValidarId();
+            EntidadeBase entidade = ValidarId();
             repositorio.RemoverRegistro(entidade);
         }
 
-        public Entidade ValidarId()
+        public EntidadeBase ValidarId()
         {
-            Entidade entidade;
+            EntidadeBase entidade;
             while (true)
             {
                 MostrarEntidades();

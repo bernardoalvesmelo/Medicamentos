@@ -5,7 +5,7 @@ using GerenciamentoMedicamentos.ModuloMedicamento;
 
 namespace GerenciamentoMedicamentos.ModuloAquisicao
 {
-    public class Aquisicao : Entidade
+    public class Aquisicao : EntidadeBase
     {
         static private int id = 0;
 
@@ -35,14 +35,14 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             return atributos;
         }
 
-        public override void Atualizar(Entidade entidade)
+        public override void Atualizar(EntidadeBase entidade)
         {
             Aquisicao aquisicao = (Aquisicao)entidade;
             AquisicaoFornecedor = aquisicao.AquisicaoFornecedor;
             AquisicaoFuncionario = aquisicao.AquisicaoFuncionario;
         }
 
-        public override Entidade ObterClasse()
+        public override EntidadeBase ObterClasse()
         {
             return new Aquisicao();
         }

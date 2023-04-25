@@ -2,7 +2,7 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 
 namespace GerenciamentoMedicamentos.ModuloFuncionario
 {
-public class Funcionario : Entidade
+public class Funcionario : EntidadeBase
 {
     static private int id = 0;
 
@@ -25,7 +25,7 @@ public class Funcionario : Entidade
         return atributos;
     }
 
-    public override void Atualizar(Entidade entidade)
+    public override void Atualizar(EntidadeBase entidade)
     {
         Funcionario funcionario = (Funcionario)entidade;
         Nome = funcionario.Nome;
@@ -36,7 +36,7 @@ public class Funcionario : Entidade
         Endereco = funcionario.Endereco;
     }
 
-    public override Entidade ObterClasse()
+    public override EntidadeBase ObterClasse()
     {
         return new Funcionario();
     }

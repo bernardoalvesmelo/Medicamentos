@@ -6,14 +6,14 @@ using GerenciamentoMedicamentos.ModuloPaciente;
 namespace GerenciamentoMedicamentos.ModuloRequisicao
 {
 
-    public class TelaRequisicao : Tela
+    public class TelaRequisicao : TelaBase
     {
         private TelaPaciente telaPaciente;
         private TelaFuncionario telaFuncionario;
 
         private TelaMedicamento telaMedicamento;
 
-        public TelaRequisicao(Repositorio repositorio, TelaPaciente telaPaciente, TelaFuncionario telaFuncionario, TelaMedicamento telaMedicamento) : base(repositorio)
+        public TelaRequisicao(RepositorioBase repositorio, TelaPaciente telaPaciente, TelaFuncionario telaFuncionario, TelaMedicamento telaMedicamento) : base(repositorio)
         {
             titulo = "Requisições:";
             string[] cabecalho = {"Id:","Paciente:","Medicamento:","Funcionário:",
@@ -90,14 +90,14 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Requisicao requisicao = new Requisicao();
             PreencherAtributos(requisicao);
             return requisicao;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Requisicao requisicao = (Requisicao)entidade;
             Paciente paciente = (Paciente)telaPaciente.ValidarId();

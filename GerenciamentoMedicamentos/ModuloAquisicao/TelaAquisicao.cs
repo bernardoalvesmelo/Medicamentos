@@ -6,14 +6,14 @@ using GerenciamentoMedicamentos.ModuloMedicamento;
 namespace GerenciamentoMedicamentos.ModuloAquisicao
 {
 
-    public class TelaAquisicao : Tela
+    public class TelaAquisicao : TelaBase
     {
         private TelaFornecedor telaFornecedor;
         private TelaFuncionario telaFuncionario;
 
         private TelaMedicamento telaMedicamento;
 
-        public TelaAquisicao(Repositorio repositorio, TelaFornecedor telaFornecedor, TelaFuncionario telaFuncionario, TelaMedicamento telaMedicamento) : base(repositorio)
+        public TelaAquisicao(RepositorioBase repositorio, TelaFornecedor telaFornecedor, TelaFuncionario telaFuncionario, TelaMedicamento telaMedicamento) : base(repositorio)
         {
             titulo = "Aquisições:";
             string[] cabecalho = {"Id:","Fornecedor:","Medicamento:","Funcionário:",
@@ -90,14 +90,14 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Aquisicao aquisicao = new Aquisicao();
             PreencherAtributos(aquisicao);
             return aquisicao;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Aquisicao aquisicao = (Aquisicao)entidade;
             Medicamento medicamento = (Medicamento)telaMedicamento.ValidarId();

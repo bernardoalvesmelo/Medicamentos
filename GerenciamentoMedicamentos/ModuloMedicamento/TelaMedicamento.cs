@@ -5,12 +5,12 @@ using GerenciamentoMedicamentos.ModuloFornecedor;
 
 namespace GerenciamentoMedicamentos.ModuloMedicamento
 {
-    public class TelaMedicamento : Tela
+    public class TelaMedicamento : TelaBase
     {
         private TelaFornecedor telaFornecedor;
 
 
-        public TelaMedicamento(Repositorio repositorio, TelaFornecedor telaFornecedor) : base(repositorio)
+        public TelaMedicamento(RepositorioBase repositorio, TelaFornecedor telaFornecedor) : base(repositorio)
         {
             titulo = "Medicamentos:";
             string[] cabecalho = {"Id:","Nome:","Descrição:","Quantidade:",
@@ -108,14 +108,14 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Medicamento medicamento = new Medicamento();
             PreencherAtributos(medicamento);
             return medicamento;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Medicamento medicamento = (Medicamento)entidade;
             Fornecedor fornecedor = (Fornecedor)telaFornecedor.ValidarId();
@@ -145,9 +145,9 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             return medicamentos;
         }
 
-        public Entidade ValidarIdDisponivel()
+        public EntidadeBase ValidarIdDisponivel()
         {
-            Entidade entidade;
+            EntidadeBase entidade;
             while (true)
             {
                 MostrarMedicamentosDisponiveis();

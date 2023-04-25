@@ -5,7 +5,7 @@ using GerenciamentoMedicamentos.ModuloRequisicao;
 
 namespace GerenciamentoMedicamentos.ModuloMedicamento
 {
-public class Medicamento : Entidade
+public class Medicamento : EntidadeBase
 {
     static private int id = 0;
 
@@ -43,7 +43,7 @@ public class Medicamento : Entidade
         return atributos;
     }
 
-    public override void Atualizar(Entidade entidade)
+    public override void Atualizar(EntidadeBase entidade)
     {
         Medicamento medicamento = (Medicamento)entidade;
         Nome = medicamento.Nome;
@@ -52,7 +52,7 @@ public class Medicamento : Entidade
         MedicamentoFornecedor = medicamento.MedicamentoFornecedor;
     }
 
-    public override Entidade ObterClasse()
+    public override EntidadeBase ObterClasse()
     {
         return new Medicamento();
     }

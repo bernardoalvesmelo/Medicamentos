@@ -3,11 +3,11 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 namespace GerenciamentoMedicamentos.ModuloFuncionario
 {
 
-    public class TelaFuncionario : Tela
+    public class TelaFuncionario : TelaBase
     {
 
 
-        public TelaFuncionario(Repositorio repositorio) : base(repositorio)
+        public TelaFuncionario(RepositorioBase repositorio) : base(repositorio)
         {
             titulo = "Funcionários:";
             string[] cabecalho = { "Id:", "Nome:", "CPF:", "Telefone", "Endereço:" };
@@ -76,14 +76,14 @@ namespace GerenciamentoMedicamentos.ModuloFuncionario
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Funcionario funcionario = new Funcionario();
             PreencherAtributos(funcionario);
             return funcionario;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Funcionario funcionario = (Funcionario)entidade;
             Console.Write("Digite o nome do funcionário: ");

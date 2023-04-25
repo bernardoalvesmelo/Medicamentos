@@ -3,11 +3,11 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 namespace GerenciamentoMedicamentos.ModuloPaciente
 {
 
-    public class TelaPaciente : Tela
+    public class TelaPaciente : TelaBase
     {
 
 
-        public TelaPaciente(Repositorio repositorio) : base(repositorio)
+        public TelaPaciente(RepositorioBase repositorio) : base(repositorio)
         {
             titulo = "Pacientes";
             string[] cabecalho = { "Id:", "Nome:", "CPF:", "Cartão do SUS:", "Telefone", "Endereço:" };
@@ -76,14 +76,14 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Paciente paciente = new Paciente();
             PreencherAtributos(paciente);
             return paciente;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Paciente paciente = (Paciente)entidade;
             Console.Write("Digite o nome do paciente: ");

@@ -2,7 +2,7 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 
 namespace GerenciamentoMedicamentos.ModuloPaciente
 {
-    public class Paciente : Entidade
+    public class Paciente : EntidadeBase
     {
         static private int id = 0;
 
@@ -25,7 +25,7 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
             return atributos;
         }
 
-        public override void Atualizar(Entidade entidade)
+        public override void Atualizar(EntidadeBase entidade)
         {
             Paciente paciente = (Paciente)entidade;
             Nome = paciente.Nome;
@@ -35,7 +35,7 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
             Endereco = paciente.Endereco;
         }
 
-        public override Entidade ObterClasse()
+        public override EntidadeBase ObterClasse()
         {
             return new Paciente();
         }

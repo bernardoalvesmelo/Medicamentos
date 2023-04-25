@@ -2,7 +2,7 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 
 namespace GerenciamentoMedicamentos.ModuloFornecedor
 {
-    public class Fornecedor : Entidade
+    public class Fornecedor : EntidadeBase
     {
         static private int id = 0;
 
@@ -26,7 +26,7 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
             return atributos;
         }
 
-        public override void Atualizar(Entidade entidade)
+        public override void Atualizar(EntidadeBase entidade)
         {
             Fornecedor fornecedor = (Fornecedor)entidade;
             Nome = fornecedor.Nome;
@@ -36,7 +36,7 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
             Endereco = fornecedor.Endereco;
         }
 
-        public override Entidade ObterClasse()
+        public override EntidadeBase ObterClasse()
         {
             return new Fornecedor();
         }

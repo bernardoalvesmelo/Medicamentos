@@ -3,11 +3,11 @@ using GerenciamentoMedicamentos.ModuloCompartilhado;
 namespace GerenciamentoMedicamentos.ModuloFornecedor
 {
 
-    public class TelaFornecedor : Tela
+    public class TelaFornecedor : TelaBase
     {
 
 
-        public TelaFornecedor(Repositorio repositorio) : base(repositorio)
+        public TelaFornecedor(RepositorioBase repositorio) : base(repositorio)
         {
             titulo = "Fornecedores:";
             string[] cabecalho = { "Id:", "Nome:", "CNPJ:", "Telefone:", "Email", "Endereço:" };
@@ -76,14 +76,14 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
             }
         }
 
-        public override Entidade RegistrarEntidade()
+        public override EntidadeBase RegistrarEntidade()
         {
             Fornecedor fornecedor = new Fornecedor();
             PreencherAtributos(fornecedor);
             return fornecedor;
         }
 
-        public override void PreencherAtributos(Entidade entidade)
+        public override void PreencherAtributos(EntidadeBase entidade)
         {
             Fornecedor fornecedor = (Fornecedor)entidade;
             Console.Write("Digite o nome do fornecedor: ");
