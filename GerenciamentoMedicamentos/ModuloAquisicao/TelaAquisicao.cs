@@ -31,8 +31,7 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             "Tela Aquisição",
             "0-Sair",
             "1-Registrar Aquisição",
-            "2-Mostrar Aquisições",
-            "3-Remover Aquisição"
+            "2-Mostrar Aquisições"
         };
             while (true)
             {
@@ -68,19 +67,6 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
                     case "2":
                         MostrarEntidades();
                         Console.ReadLine();
-                        break;
-                    case "3":
-                        if (repositorio.Lista.Count > 0)
-                        {
-                            RemoverEntidade();
-                            Console.WriteLine("Aquisição removida!");
-                            Console.ReadLine();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não existe aquisições registradas no sistema!");
-                            Console.ReadLine();
-                        }
                         break;
                     default:
                         Console.WriteLine("Opção não encontrada!");

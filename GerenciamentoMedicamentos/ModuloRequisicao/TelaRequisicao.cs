@@ -31,8 +31,7 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             "Tela Requisição",
             "0-Sair",
             "1-Registrar Requisição",
-            "2-Mostrar Requisições",
-            "3-Remover Requisição"
+            "2-Mostrar Requisições"
         };
             while (true)
             {
@@ -68,19 +67,6 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
                     case "2":
                         MostrarEntidades();
                         Console.ReadLine();
-                        break;
-                    case "3":
-                        if (repositorio.Lista.Count > 0)
-                        {
-                            RemoverEntidade();
-                            Console.WriteLine("Requisição removida!");
-                            Console.ReadLine();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Não existe requisições registradas no sistema!");
-                            Console.ReadLine();
-                        }
                         break;
                     default:
                         Console.WriteLine("Opção não encontrada!");
