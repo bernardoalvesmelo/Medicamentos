@@ -16,7 +16,7 @@ namespace GerenciamentoMedicamentos
         static TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
         static RepositorioBase repositorioFuncionario = new RepositorioBase();
         static TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
-        static RepositorioBase repositorioMedicamento = new RepositorioBase();
+        static RepositorioMedicamento repositorioMedicamento = new RepositorioMedicamento();
         static TelaMedicamento telaMedicamento = new TelaMedicamento(
             repositorioMedicamento,
             telaFornecedor

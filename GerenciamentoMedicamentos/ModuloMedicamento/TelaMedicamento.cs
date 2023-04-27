@@ -8,10 +8,11 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
     public class TelaMedicamento : TelaBase
     {
         private TelaFornecedor telaFornecedor;
+        private RepositorioMedicamento repositorioMedicamento;
 
-
-        public TelaMedicamento(RepositorioBase repositorio, TelaFornecedor telaFornecedor) : base(repositorio)
+        public TelaMedicamento(RepositorioMedicamento repositorio, TelaFornecedor telaFornecedor) : base(repositorio)
         {
+            repositorioMedicamento = repositorio;
             titulo = "Medicamentos:";
             string[] cabecalho = {"Id:","Nome:","Descrição:","Quantidade:",
         "Retiradas:","Limite:","Fornecedor:"};
@@ -43,7 +44,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                     case "1":
                         if (telaFornecedor.Quantidade > 0)
                         {
-                            repositorio.InserirRegistro(RegistrarEntidade());
+                            repositorioMedicamento.InserirRegistro(RegistrarEntidade());
                             Console.WriteLine("Medicamento registrado!");
                             Console.ReadLine();
                         }
@@ -58,7 +59,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                         Console.ReadLine();
                         break;
                     case "3":
-                        if (repositorio.Lista.Count > 0)
+                        if (repositorioMedicamento.Lista.Count > 0)
                         {
                             if (telaFornecedor.Quantidade > 0)
                             {
@@ -80,7 +81,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                         }
                         break;
                     case "4":
-                        if (repositorio.Lista.Count > 0)
+                        if (repositorioMedicamento.Lista.Count > 0)
                         {
                             RemoverEntidade();
                             Console.WriteLine("Medicamento removido!");
@@ -132,19 +133,6 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             medicamento.Requisicoes = new ArrayList();
         }
 
-        public ArrayList ObterMedicamentosDisponiveis()
-        {
-            ArrayList medicamentos = new ArrayList();
-            foreach (Medicamento medicamento in repositorio.Lista)
-            {
-                if (medicamento.Quantidade > 0)
-                {
-                    medicamentos.Add(medicamento);
-                }
-            }
-            return medicamentos;
-        }
-
         public EntidadeBase ValidarIdDisponivel()
         {
             EntidadeBase entidade;
@@ -152,7 +140,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             {
                 MostrarMedicamentosDisponiveis();
                 int indice = ValidarInt("Digite o id: ");
-                entidade = repositorio.EncontrarRegistro(indice, ObterMedicamentosDisponiveis());
+                entidade = repositorioMedicamento.EncontrarRegistro(indice, repositorioMedicamento.ObterMedicamentosDisponiveis());
                 if (entidade == null)
                 {
                     Console.WriteLine("O id escolhido não está disponível!");
@@ -161,6 +149,11 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                 }
                 return entidade;
             }
+        }
+
+        public ArrayList ObterMedicamentosDisponiveis()
+        {
+            return (ArrayList)repositorioMedicamento.ObterMedicamentosDisponiveis().Clone();
         }
 
         public void MostrarMedicamentosDisponiveis()
@@ -175,18 +168,16 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             Console.Write(cabecalho);
             Console.WriteLine();
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
-            foreach (Medicamento medicamento in repositorio.Lista)
-                if (medicamento.Quantidade > 0)
+            foreach (Medicamento medicamento in repositorioMedicamento.ObterMedicamentosDisponiveis())
+            {
+                foreach (string atributo in medicamento.ObterAtributos())
                 {
-                    {
-                        foreach (string atributo in medicamento.ObterAtributos())
-                        {
-                            Console.Write(atributo.PadRight(20) + "|");
-                        }
-                        Console.WriteLine();
-                    }
+                    Console.Write(atributo.PadRight(20) + "|");
                 }
+                Console.WriteLine();
+            }
         }
+
         public void MostrarMedicamentosEmFalta()
         {
             Console.Clear();
@@ -199,17 +190,14 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             Console.Write(cabecalho);
             Console.WriteLine();
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
-            foreach (Medicamento medicamento in repositorio.Lista)
-                if (medicamento.Limite > medicamento.Quantidade)
+            foreach (Medicamento medicamento in repositorioMedicamento.ObterMedicamentosEmFalta())
+            {
+                foreach (string atributo in medicamento.ObterAtributos())
                 {
-                    {
-                        foreach (string atributo in medicamento.ObterAtributos())
-                        {
-                            Console.Write(atributo.PadRight(20) + "|");
-                        }
-                        Console.WriteLine();
-                    }
+                    Console.Write(atributo.PadRight(20) + "|");
                 }
+                Console.WriteLine();
+            }
         }
 
         public void MostrarMedicamentosRequisitados()
@@ -224,37 +212,13 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             Console.Write(cabecalho);
             Console.WriteLine();
             Console.WriteLine("".PadRight(cabecalho.Length, '-'));
-            ArrayList ListaOrdenada = (ArrayList)repositorio.Lista.Clone();
-            IComparer comparador = (IComparer)new ComparadorMedicamento();
-            ListaOrdenada.Sort(comparador);
-            foreach (Medicamento medicamento in ListaOrdenada)
-                if (medicamento.Requisicoes.Count > 0)
+            foreach (Medicamento medicamento in repositorioMedicamento.ObterMedicamentosRequisitados())
+            {
+                foreach (string atributo in medicamento.ObterAtributos())
                 {
-                    {
-                        foreach (string atributo in medicamento.ObterAtributos())
-                        {
-                            Console.Write(atributo.PadRight(20) + "|");
-                        }
-                        Console.WriteLine();
-                    }
+                    Console.Write(atributo.PadRight(20) + "|");
                 }
-        }
-    }
-
-    public class ComparadorMedicamento : IComparer
-    {
-        public int Compare(object? a, object? b)
-        {
-            try
-            {
-                Medicamento x = (Medicamento)a;
-                Medicamento y = (Medicamento)b;
-                return y.Retiradas.CompareTo(x.Retiradas);
-            }
-            catch (Exception erro)
-            {
-                Console.WriteLine(erro);
-                return 0;
+                Console.WriteLine();
             }
         }
     }
