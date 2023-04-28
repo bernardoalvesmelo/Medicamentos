@@ -36,7 +36,7 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
             Endereco = fornecedor.Endereco;
         }
 
-        public override EntidadeBase ObterClasse()
+        public override EntidadeBase ObterNovaInstancia()
         {
             return new Fornecedor();
         }

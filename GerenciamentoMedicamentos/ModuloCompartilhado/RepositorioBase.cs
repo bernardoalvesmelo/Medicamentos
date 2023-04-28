@@ -2,7 +2,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
 {
     using System.Collections;
 
-    public class RepositorioBase
+    public abstract class RepositorioBase
     {
         public ArrayList Lista { get; protected set; }
 
@@ -11,19 +11,19 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             this.Lista = new ArrayList();
         }
 
-        public void InserirRegistro(EntidadeBase entidade)
+        public virtual void InserirRegistro(EntidadeBase entidade)
         {
             Lista.Add(entidade);
         }
 
-        public void EditarRegistro (
+        public virtual void EditarRegistro (
             EntidadeBase entidadeAtualizada, int id
         )
         {
             EncontrarRegistro(id).Atualizar(entidadeAtualizada);
         }
 
-        public EntidadeBase EncontrarRegistro(int id, ArrayList lista)
+        public virtual EntidadeBase EncontrarRegistro(int id, ArrayList lista)
         {
             foreach (EntidadeBase entidade in lista)
             {
@@ -49,7 +49,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             return null;
         }
 
-        public void RemoverRegistro(EntidadeBase entidade)
+        public virtual void RemoverRegistro(EntidadeBase entidade)
         {
             Lista.Remove(entidade);
         }

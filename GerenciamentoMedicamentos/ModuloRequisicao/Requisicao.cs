@@ -47,7 +47,7 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             return erros;
         }
 
-        public override EntidadeBase ObterClasse()
+        public override EntidadeBase ObterNovaInstancia()
         {
             return new Requisicao();
         }

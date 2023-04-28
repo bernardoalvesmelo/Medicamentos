@@ -52,7 +52,7 @@ public class Medicamento : EntidadeBase
         MedicamentoFornecedor = medicamento.MedicamentoFornecedor;
     }
 
-    public override EntidadeBase ObterClasse()
+    public override EntidadeBase ObterNovaInstancia()
     {
         return new Medicamento();
     }

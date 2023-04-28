@@ -3,7 +3,7 @@ using GerenciamentoMedicamentos.ModuloFuncionario;
 
 namespace GerenciamentoMedicamentos.ModuloCompartilhado
 {
-    public class TelaBase
+    public abstract class TelaBase
     {
         protected RepositorioBase repositorio;
         protected string titulo;
@@ -24,14 +24,9 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             string[] cabecalho = { "Id:" };
             Cabecalho = cabecalho;
         }
-        public virtual EntidadeBase RegistrarEntidade()
-        {
-            EntidadeBase entidade = new EntidadeBase();
-            PreencherAtributos(entidade);
-            return entidade;
-        }
+        public abstract EntidadeBase RegistrarEntidade();
 
-        public void MostrarEntidades()
+        public virtual void MostrarEntidades()
         {
             Console.Clear();
             Console.WriteLine(titulo);
@@ -53,28 +48,24 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             }
         }
 
-        public void AtualizarEntidade()
+        public virtual void AtualizarEntidade()
         {
             EntidadeBase entidadeAtualizada = ValidarId();
             int id = entidadeAtualizada.Id;
-            entidadeAtualizada = entidadeAtualizada.ObterClasse();
+            entidadeAtualizada = entidadeAtualizada.ObterNovaInstancia();
             PreencherAtributos(entidadeAtualizada);
             repositorio.EditarRegistro(entidadeAtualizada, id);
         }
 
-        public virtual void PreencherAtributos(EntidadeBase entidade)
-        {
-            entidade.Atualizar(entidade);
-            Console.WriteLine('d');
-        }
+        public abstract void PreencherAtributos(EntidadeBase entidade);
 
-        public void RemoverEntidade()
+        public virtual void RemoverEntidade()
         {
             EntidadeBase entidade = ValidarId();
             repositorio.RemoverRegistro(entidade);
         }
 
-        public EntidadeBase ValidarId()
+        public virtual EntidadeBase ValidarId()
         {
             EntidadeBase entidade;
             while (true)
@@ -91,7 +82,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
                 return entidade;
             }
         }
-        public void MostrarMenu()
+        public virtual void MostrarMenu()
         {
             Console.Clear();
             foreach (string opcao in ObterOpcoes())
@@ -101,7 +92,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Console.Write("Digite a opção desejada: ");
         }
 
-        protected int ValidarInt(string mensagem)
+        protected virtual int ValidarInt(string mensagem)
         {
             while (true)
             {
@@ -117,7 +108,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             }
         }
 
-        protected DateTime ValidarData(string mensagem)
+        protected virtual DateTime ValidarData(string mensagem)
         {
             DateTime data;
             while (true)

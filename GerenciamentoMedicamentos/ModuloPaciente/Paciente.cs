@@ -35,7 +35,7 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
             Endereco = paciente.Endereco;
         }
 
-        public override EntidadeBase ObterClasse()
+        public override EntidadeBase ObterNovaInstancia()
         {
             return new Paciente();
         }

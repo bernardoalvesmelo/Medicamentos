@@ -36,7 +36,7 @@ public class Funcionario : EntidadeBase
         Endereco = funcionario.Endereco;
     }
 
-    public override EntidadeBase ObterClasse()
+    public override EntidadeBase ObterNovaInstancia()
     {
         return new Funcionario();
     }

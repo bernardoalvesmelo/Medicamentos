@@ -42,7 +42,7 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             AquisicaoFuncionario = aquisicao.AquisicaoFuncionario;
         }
 
-        public override EntidadeBase ObterClasse()
+        public override EntidadeBase ObterNovaInstancia()
         {
             return new Aquisicao();
         }
