@@ -16,7 +16,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             Lista.Add(entidade);
         }
 
-        public void EditarRegistro(
+        public void EditarRegistro (
             EntidadeBase entidadeAtualizada, int id
         )
         {
@@ -36,7 +36,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
             return null;
         }
 
-        public EntidadeBase EncontrarRegistro(int id)
+        public virtual EntidadeBase EncontrarRegistro(int id)
         {
             foreach (EntidadeBase entidade in Lista)
             {

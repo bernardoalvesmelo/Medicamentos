@@ -26,16 +26,9 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Aquisição",
-            "0-Sair",
-            "1-Registrar Aquisição",
-            "2-Mostrar Aquisições"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {
@@ -96,6 +89,18 @@ namespace GerenciamentoMedicamentos.ModuloAquisicao
             medicamento.Quantidade += quantidade;
             string data = DateTime.Now.ToString("dd/MM/yyyy");
             aquisicao.Data = DateTime.ParseExact(data, "dd/MM/yyyy", null);
+        }
+
+        protected override string[] ObterOpcoes()
+        {
+            string[] opcoes =
+            {
+            "Tela Aquisição",
+            "0-Sair",
+            "1-Registrar Aquisição",
+            "2-Mostrar Aquisições"
+            };
+            return opcoes;
         }
 
     }

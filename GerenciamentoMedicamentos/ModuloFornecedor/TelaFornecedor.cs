@@ -9,25 +9,17 @@ namespace GerenciamentoMedicamentos.ModuloFornecedor
 
         public TelaFornecedor(RepositorioBase repositorio) : base(repositorio)
         {
-            titulo = "Fornecedores:";
+            titulo = "Fornecedores";
+            nomeEntidade = "Fornecedor";
             string[] cabecalho = { "Id:", "Nome:", "CNPJ:", "Telefone:", "Email", "Endereço:" };
             Cabecalho = cabecalho;
         }
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Fornecedor",
-            "0-Sair",
-            "1-Registrar Fornecedor",
-            "2-Mostrar Fornecedores",
-            "3-Atualizar Fornecedor",
-            "4-Remover Fornecedor"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {

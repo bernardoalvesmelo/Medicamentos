@@ -10,25 +10,25 @@ namespace GerenciamentoMedicamentos
 {
     internal class Program
     {
-        static RepositorioBase repositorioPaciente = new RepositorioBase();
+        static RepositorioPaciente repositorioPaciente = new RepositorioPaciente();
         static TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
-        static RepositorioBase repositorioFornecedor = new RepositorioBase();
+        static RepositorioFornecedor repositorioFornecedor = new RepositorioFornecedor();
         static TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
-        static RepositorioBase repositorioFuncionario = new RepositorioBase();
+        static RepositorioFuncionario repositorioFuncionario = new RepositorioFuncionario();
         static TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
         static RepositorioMedicamento repositorioMedicamento = new RepositorioMedicamento();
         static TelaMedicamento telaMedicamento = new TelaMedicamento(
             repositorioMedicamento,
             telaFornecedor
         );
-        static RepositorioBase repositorioAquisicao = new RepositorioBase();
+        static RepositorioAquisicao repositorioAquisicao = new RepositorioAquisicao();
         static TelaAquisicao telaAquisicao = new TelaAquisicao(
             repositorioAquisicao,
             telaFornecedor,
             telaFuncionario,
             telaMedicamento
         );
-        static RepositorioBase repositorioRequisicao = new RepositorioBase();
+        static RepositorioRequisicao repositorioRequisicao = new RepositorioRequisicao();
         static TelaRequisicao telaRequisicao = new TelaRequisicao(
             repositorioRequisicao,
             telaPaciente,

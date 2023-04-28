@@ -13,7 +13,8 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
         public TelaMedicamento(RepositorioMedicamento repositorio, TelaFornecedor telaFornecedor) : base(repositorio)
         {
             repositorioMedicamento = repositorio;
-            titulo = "Medicamentos:";
+            titulo = "Medicamentos";
+            nomeEntidade = "Medicamento";
             string[] cabecalho = {"Id:","Nome:","Descrição:","Quantidade:",
         "Retiradas:","Limite:","Fornecedor:"};
             Cabecalho = cabecalho;
@@ -22,20 +23,9 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Medicamento",
-            "0-Sair",
-            "1-Registrar Medicamento",
-            "2-Mostrar Medicamentos",
-            "3-Atualizar Medicamento",
-            "4-Remover Medicamento",
-            "5-Mostrar Medicamentos Requisitados",
-            "6-Mostrar Medicamentos em Falta"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {
@@ -220,6 +210,22 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                 }
                 Console.WriteLine();
             }
+        }
+
+        protected override string[] ObterOpcoes()
+        {
+            string[] opcoes =
+            {
+            "Tela Medicamento",
+            "0-Sair",
+            "1-Registrar Medicamento",
+            "2-Mostrar Medicamentos",
+            "3-Atualizar Medicamento",
+            "4-Remover Medicamento",
+            "5-Mostrar Medicamentos Requisitados",
+            "6-Mostrar Medicamentos em Falta"
+            };
+            return opcoes;
         }
     }
 }

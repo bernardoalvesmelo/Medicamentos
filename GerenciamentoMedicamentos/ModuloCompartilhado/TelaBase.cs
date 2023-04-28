@@ -7,6 +7,7 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
     {
         protected RepositorioBase repositorio;
         protected string titulo;
+        protected string nomeEntidade;
 
         public static Funcionario funcionarioLogado;
         public int Quantidade
@@ -18,7 +19,8 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
         public TelaBase(RepositorioBase repositorio)
         {
             this.repositorio = repositorio;
-            titulo = "Entidades:";
+            titulo = "Entidades";
+            nomeEntidade = "Entidade";
             string[] cabecalho = { "Id:" };
             Cabecalho = cabecalho;
         }
@@ -89,14 +91,13 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
                 return entidade;
             }
         }
-        public void MostrarMenu(string[] menu)
+        public void MostrarMenu()
         {
             Console.Clear();
-            foreach (string opcao in menu)
+            foreach (string opcao in ObterOpcoes())
             {
                 Console.WriteLine(opcao);
             }
-
             Console.Write("Digite a opção desejada: ");
         }
 
@@ -141,6 +142,20 @@ namespace GerenciamentoMedicamentos.ModuloCompartilhado
                     Console.ReadLine();
                 }
             }
+        }
+
+        protected virtual string[] ObterOpcoes()
+        {
+            string[] opcoes =
+            {
+            "Tela Aquisição",
+            "0-Sair",
+            $"1-Registrar {this.nomeEntidade}",
+            $"2-Mostrar {this.titulo}",
+            $"3-Editar {this.nomeEntidade}",
+            $"4-Remover {this.nomeEntidade}",
+            };
+            return opcoes;
         }
     }
 }

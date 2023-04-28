@@ -10,24 +10,16 @@ namespace GerenciamentoMedicamentos.ModuloPaciente
         public TelaPaciente(RepositorioBase repositorio) : base(repositorio)
         {
             titulo = "Pacientes";
+            nomeEntidade = "Paciente";
             string[] cabecalho = { "Id:", "Nome:", "CPF:", "Cartão do SUS:", "Telefone", "Endereço:" };
             Cabecalho = cabecalho;
         }
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Paciente",
-            "0-Sair",
-            "1-Registrar Paciente",
-            "2-Mostrar Pacientes",
-            "3-Atualizar Paciente",
-            "4-Remover Paciente"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {

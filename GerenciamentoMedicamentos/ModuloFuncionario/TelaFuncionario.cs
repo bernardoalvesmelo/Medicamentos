@@ -9,25 +9,17 @@ namespace GerenciamentoMedicamentos.ModuloFuncionario
 
         public TelaFuncionario(RepositorioBase repositorio) : base(repositorio)
         {
-            titulo = "Funcionários:";
+            titulo = "Funcionários";
+            nomeEntidade = "Funcionário";
             string[] cabecalho = { "Id:", "Nome:", "CPF:", "Telefone", "Endereço:" };
             Cabecalho = cabecalho;
         }
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Funcionário",
-            "0-Sair",
-            "1-Registrar Funcionário",
-            "2-Mostrar Funcionários",
-            "3-Atualizar Funcionário",
-            "4-Remover Funcionário"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {
@@ -121,7 +113,6 @@ namespace GerenciamentoMedicamentos.ModuloFuncionario
                     return funcionario;
                 }
             return null;
-
         }
     }
 }

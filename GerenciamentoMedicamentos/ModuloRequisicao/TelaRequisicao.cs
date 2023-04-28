@@ -15,7 +15,8 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
 
         public TelaRequisicao(RepositorioBase repositorio, TelaPaciente telaPaciente, TelaFuncionario telaFuncionario, TelaMedicamento telaMedicamento) : base(repositorio)
         {
-            titulo = "Requisições:";
+            titulo = "Requisições";
+            nomeEntidade = "Requisição";
             string[] cabecalho = {"Id:","Paciente:","Medicamento:","Funcionário:",
         "Data:","Medicamentos:"};
             Cabecalho = cabecalho;
@@ -26,16 +27,9 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
 
         public void Opcoes()
         {
-            string[] opcoes =
-            {
-            "Tela Requisição",
-            "0-Sair",
-            "1-Registrar Requisição",
-            "2-Mostrar Requisições"
-        };
             while (true)
             {
-                MostrarMenu(opcoes);
+                MostrarMenu();
                 string opcao = Console.ReadLine();
                 switch (opcao)
                 {
@@ -130,5 +124,16 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             }
         }
 
+        protected override string[] ObterOpcoes()
+        {
+            string[] opcoes =
+            {
+            "Tela Requisição",
+            "0-Sair",
+            "1-Registrar Requisição",
+            "2-Mostrar Requisições"
+            };
+            return opcoes;
+        }
     }
 }
