@@ -86,20 +86,34 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
         public override void PreencherAtributos(EntidadeBase entidade)
         {
             Requisicao requisicao = (Requisicao)entidade;
-            Paciente paciente = (Paciente)telaPaciente.ValidarId();
-            requisicao.RequisicaoPaciente = paciente;
-            Medicamento medicamento = (Medicamento)telaMedicamento.ValidarIdDisponivel();
-            requisicao.RequisicaoMedicamento = medicamento;
-            requisicao.RequisicaoFuncionario = funcionarioLogado;
-            int quantidade = ValidarQuantidade("Digite o número de medicamentos: ", medicamento.Quantidade);
-            requisicao.QuantidadeMedicamento = quantidade;
-            medicamento.Quantidade -= quantidade;
-            if (!medicamento.Requisicoes.Contains(requisicao))
+            while (true)
             {
-                medicamento.Requisicoes.Add(requisicao);
+                Paciente paciente = (Paciente)telaPaciente.ValidarId();
+                requisicao.RequisicaoPaciente = paciente;
+                Medicamento medicamento = (Medicamento)telaMedicamento.ValidarIdDisponivel();
+                requisicao.RequisicaoMedicamento = medicamento;
+                requisicao.RequisicaoFuncionario = funcionarioLogado;
+                int quantidade = ValidarQuantidade("Digite o número de medicamentos: ", medicamento.Quantidade);
+                requisicao.QuantidadeMedicamento = quantidade;
+
+                if (requisicao.ObterErros().Count > 0)
+                {
+                    foreach(string erro in requisicao.ObterErros())
+                    {
+                        Console.WriteLine(erro);
+                    }
+                    Console.ReadLine();
+                    continue;
+                }
+                medicamento.Quantidade -= quantidade;
+                if (!medicamento.Requisicoes.Contains(requisicao))
+                {
+                    medicamento.Requisicoes.Add(requisicao);
+                }
+                string data = DateTime.Now.ToString("dd/MM/yyyy");
+                requisicao.Data = DateTime.ParseExact(data, "dd/MM/yyyy", null);
+                break;
             }
-            string data = DateTime.Now.ToString("dd/MM/yyyy");
-            requisicao.Data = DateTime.ParseExact(data, "dd/MM/yyyy", null);
         }
 
         private int ValidarQuantidade(string mensagem, int quantidade)

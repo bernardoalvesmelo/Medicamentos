@@ -1,3 +1,4 @@
+using System.Collections;
 using GerenciamentoMedicamentos.ModuloCompartilhado;
 using GerenciamentoMedicamentos.ModuloFuncionario;
 using GerenciamentoMedicamentos.ModuloMedicamento;
@@ -34,6 +35,16 @@ namespace GerenciamentoMedicamentos.ModuloRequisicao
             Requisicao requisicao = (Requisicao)entidade;
             RequisicaoPaciente = requisicao.RequisicaoPaciente;
             RequisicaoFuncionario = requisicao.RequisicaoFuncionario;
+        }
+
+        public ArrayList ObterErros()
+        {
+            ArrayList erros = new ArrayList();
+            if (QuantidadeMedicamento > RequisicaoMedicamento.Quantidade)
+            {
+                erros.Add("Digite uma quantidade menor");
+            }
+            return erros;
         }
 
         public override EntidadeBase ObterClasse()
