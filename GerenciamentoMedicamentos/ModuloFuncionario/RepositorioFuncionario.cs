@@ -1,18 +1,17 @@
-using System.Collections;
 using GerenciamentoMedicamentos.ModuloCompartilhado;
 
-namespace GerenciamentoMedicamentos.ModuloFornecedor
+namespace GerenciamentoMedicamentos.ModuloFuncionario
 {
-    public class RepositorioFornecedor : RepositorioBase
+    public class RepositorioFuncionario : RepositorioBase
     {
-        public RepositorioFornecedor()
+        public RepositorioFuncionario()
         {
 
         }
 
-        public override Fornecedor EncontrarRegistro(int id)
+        public override Funcionario EncontrarRegistro(int id)
         {
-            return (Fornecedor)base.EncontrarRegistro(id);
+            return (Funcionario)base.EncontrarRegistro(id);
         }
     }
 }
