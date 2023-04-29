@@ -59,7 +59,7 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
                 }
                 catch (ArgumentNullException)
                 {
-                    Console.WriteLine("Não é possível comparar um argumento vazio");
+                    Console.WriteLine("Não é possível comparar um argumento vazio!");
                     return 0;
                 }
             }
