@@ -41,15 +41,28 @@ namespace GerenciamentoMedicamentos.ModuloMedicamento
             ListaOrdenada.Sort(new ComparadorMedicamento());
             return ListaOrdenada;
         }
-    }
 
-    public class ComparadorMedicamento : IComparer
-    {
-        public int Compare(object? a, object? b)
+        private class ComparadorMedicamento : IComparer
         {
-            Medicamento x = (Medicamento)a;
-            Medicamento y = (Medicamento)b;
-            return y.Retiradas.CompareTo(x.Retiradas);
+            public int Compare(object? a, object? b)
+            {
+                try
+                {
+                    Medicamento x = (Medicamento)a;
+                    Medicamento y = (Medicamento)b;
+                    return y.Retiradas.CompareTo(x.Retiradas);
+                }
+                catch (InvalidCastException)
+                {
+                    Console.WriteLine("Só é possível comparar medicamentos!");
+                    return 0;
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("Não é possível comparar um argumento vazio");
+                    return 0;
+                }
+            }
         }
     }
 }
